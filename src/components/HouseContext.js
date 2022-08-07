@@ -29,10 +29,6 @@ const HouseContextProvider = ({ children }) => {
     //console.log(uniqueCountries);
     setProperties(uniqueProperties);
   }, []);
-
-
-
-
   return(
    <HouseContext.Provider value={{
     country,
