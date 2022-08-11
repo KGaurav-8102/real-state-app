@@ -31,8 +31,29 @@ const HouseContextProvider = ({ children }) => {
   }, []);
 
   const handleClick = () => {
-    console.log("clicked");
+    
+    const isDefault = (str) => {
+      return str.split(' ').includes('(any)');
+    }
+
+    const minPrice = parseInt(price.split(' ')[0]);
+
+    const maxPrice = parseInt(price.split(' ')[2]);
+
+    const newHouses = houseData.filter((house) => {
+      const housePrice = parseInt(house.price);
+
+      //if all values are selected
+
+      if (house.country === country && house.type === property && housePrice >= minPrice && housePrice <= maxPrice) {
+        return house;
+      }
+
+    });
+    console.log(newHouses);
   }
+
+ 
 
   return(
    <HouseContext.Provider value={{
@@ -46,7 +67,9 @@ const HouseContextProvider = ({ children }) => {
     setPrice,
     houses,
     loading,
-    handleClick
+    handleClick,
+    setHouses,
+    setLoading
    }}>
       {children}
    </HouseContext.Provider>
